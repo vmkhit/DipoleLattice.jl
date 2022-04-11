@@ -15,7 +15,7 @@ module DipoleLattice
     include("RDyadSum.jl")
     include("TMM.jl")
     include("MulticomponentLattice.jl")
-    include("Lattice_Reflection.jl")
+    include("Lattice_reflection.jl")
     include("../utils/utils.jl")
     export Lattice2D, ConstructWZC, PlotBZ
     export DyadSum, ScalarGreenFn, DyadGreenFn, RDyadSum
