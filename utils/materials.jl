@@ -1,9 +1,7 @@
 using SpecialFunctions
 using LinearAlgebra
 using DelimitedFiles
-using Interpolations
 using Dierckx
-using DataFrames
 
 eps_path = "C:\\Users\\vmkhitaryan\\Documents\\Github\\jcalc\\eps_data"
 

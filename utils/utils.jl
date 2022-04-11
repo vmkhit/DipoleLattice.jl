@@ -1,4 +1,3 @@
-using PyCall
 using PyPlot
 pygui(true)
 include("tmat.jl")
