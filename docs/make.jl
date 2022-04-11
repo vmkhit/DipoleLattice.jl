@@ -4,7 +4,7 @@ using DipoleLattice
 makedocs(
     sitename = "DipoleLattice",
     authors="Vahagn Mkhitaryan",
-    modules = [DipoleLattice]
+    modules = [DipoleLattice],
     format=Documenter.HTML(),
     pages=[
         "Dipole Lattice" => "index.md",
@@ -12,8 +12,8 @@ makedocs(
         "Lattice"=>"Lattice.md",
         "Multicomponent"=> "multilattice.md",
         "Supported Lattice"=> "supportedlattice.md",
-        "TMM" => "tmm.md"
-        "Lattice Dispersion" => "dispersion.md"
+        "TMM" => "tmm.md",
+        "Lattice Dispersion" => "dispersion.md",
     ],
 )
 
