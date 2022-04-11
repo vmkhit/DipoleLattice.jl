@@ -8,6 +8,8 @@
 module DipoleLattice
     import SpecialFunctions
     import LinearAlgebra
+    import DelimitedFiles
+    import Dierckx
 
     include("Lattice.jl")
     #include("Wijers.jl")

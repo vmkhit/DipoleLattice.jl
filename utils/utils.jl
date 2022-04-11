@@ -1,5 +1,3 @@
-using PyPlot
-pygui(true)
 include("tmat.jl")
 include("Mie.jl")
 include("materials.jl")
