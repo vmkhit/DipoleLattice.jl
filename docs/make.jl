@@ -5,7 +5,9 @@ makedocs(
     sitename = "DipoleLattice",
     authors="Vahagn Mkhitaryan",
     modules = [DipoleLattice],
-    format=Documenter.HTML(),
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "true") == "true",
+        ),
     pages=[
         "Dipole Lattice" => "index.md",
         "Reflection and Transmission"=>"rt.md",
