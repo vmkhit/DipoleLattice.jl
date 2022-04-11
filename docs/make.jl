@@ -11,11 +11,13 @@ makedocs(
         assets=String[],
     ),
     pages=[
-        "Home" => "index.md",
-        "Lattice"=>"lattice.md",
+        "Dipole Lattice" => "index.md",
+        "Reflection and Transmission"=>"rt.md",
+        "Lattice"=>"Lattice.md",
         "Multicomponent"=> "multilattice.md",
         "Supported Lattice"=> "supportedlattice.md",
         "TMM" => "tmm.md"
+        "Lattice Dispersion" => "dispersion.md"
     ],
 )
 

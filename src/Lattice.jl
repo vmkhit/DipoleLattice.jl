@@ -1,0 +1,225 @@
+"""
+    lattice2D
+  This data struct constructs 2D lattice object and outputs its properties.
+  # Arguments
+  - `a::Real`: Length of lattice vector `a1`, this is assumed to be along `x`-axis.
+  - `b::Real` : Length of lattice vector `a2`
+  - `ψ::Real` : Angle between lattice vector `a1` and `a2`.
+"""
+struct Lattice2D
+  id::String
+  R::Array{<:Real, 2}
+  G::Array{<:Real, 2}
+  AreaWZC::Real
+  AreaBZ::Real
+  function  Lattice2D(id::String, args...)
+    if id == "S"    # Square
+      a = args[1]
+      R = [a 0; 0 a]
+      G = (2π/a).*[1 0; 0 1]
+      AreaWZC = a*a
+    elseif id == "H" # hexagonal
+      a = args[1]
+      R = [0 -a; sqrt(3)*a/2 a/2]
+      G = (2π/a).*[1/sqrt(3) -1; 2/sqrt(3) 0]
+      AreaWZC = a*a*sqrt(3)/2
+      IBZLabels = ["Γ", "K", "M"]
+      fc = [0 0; 2/3 1/3; 1/2 0]
+    elseif id == "RC"        # rectangular centered
+      a, b = args[1:2]
+      R = [a/2 b/2; -a/2 b/2]
+      G = (2π/a).*[1 a/b; -1 a/b]
+      AreaWZC = a*b
+      IBZLabels = ["Γ", "X", "S", "Y"]
+      fc = [0 0; 1/2 0; 1/2 1/2; 0 1/2]
+    elseif id == "RP"         # Rectangular primitive
+      a, b = args[1:2]
+      R = [a 0; 0 b]
+      G = (2π/a).*[1 0; 0 a/b]
+      AreaWZC = a*b
+    elseif id == "O"    # Oblique
+      a, b, α = args[1:3]
+      R = [a 0; b*cos(α) b*sin(α)]
+      G = (2π/a).*[1 -cot(α); 0 (a/b)*csc(α)]
+      AreaWZC = a*b*sin(α)
+    elseif isempty(id)  # lattice is specified with unit vectors
+      a1  = args[1]
+      a2  = args[2]
+      R = [a1'; a2']
+      g1 = 2π*[ a2[2], -a2[1]] /( a1[1]*a2[2] - a1[2]*a2[1])
+      g2 = 2π*[-a1[2],  a1[1]] /(-a2[1]*a1[2] + a2[2]*a1[1])
+      G = [g1'; g2']
+      AreaWZC = abs(a1[1]*a2[2] - a1[2]*a2[1])
+    else
+      throw("Lattice type not defined")
+    end
+    AreaBZ = 4π^2/AreaWZC
+    return new(id, R, G, AreaWZC, AreaBZ)
+  end
+end
+
+# High-Throughput Computational Screening of Two-Dimensional Semiconductors
+# Symmetry-restricted phase transitions in two-dimensional solids
+"""
+  ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
+# Arguments
+  - `s1::Vector{<:Real}`: 1st unit vector of the 2D lattice
+  - `s2::Vector{<:Real}`: 2nd unit vector of the 2D lattice
+This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
+  Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
+  SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
+"""
+function ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
+  a = sqrt(s1[1]^2 + s1[2]^2)
+  b = sqrt(s2[1]^2 + s2[2]^2)
+
+  ψ = asin((s1[1]*s2[1] + s1[2]*s2[2])/(a*b))
+  cψ, sψ = cos(ψ), sin(abs(ψ))
+
+  # construct the perpendicular vectors and check the directions
+  sp1 = [-s1[2], s1[1]]
+  sp2 = [-s2[2], s2[1]]
+
+  if (sp2[1]*s1[1] + sp2[2]*s1[2]) < 0
+    sp2 = -sp2
+  end
+  if (sp1[1]*s2[1] + sp1[2]*s2[2]) < 0
+    sp2 = -sp1
+  end
+
+  ss1 = sp2/(a*cψ)
+  ss2 = sp1/(b*cψ)
+
+  ns1 = sqrt(ss1[1]^2 + ss1[2]^2)
+  ns2 = sqrt(ss2[1]^2 + ss2[2]^2)
+
+  g = π*(ns1 - ns2*sψ)/cψ
+  h = π*(ns2 - ns1*sψ)/cψ
+
+  bz = zeros(6, 2)
+  bz[1, :] = π.*ss2 + g.*s1./a
+  bz[2, :] = π.*ss2 - g.*s1./a
+  bz[3, :] = π.*ss1 + sign(ψ)*h.*s2./b
+  bz[4, :] = -bz[1, :]
+  bz[5, :] = -bz[2, :]
+  bz[6, :] = -bz[3, :]
+  # Removing the identical points and sorting with respect to angle
+  angles = round.(atan.(bz[:, 2], bz[:, 1]), digits = 6)
+  p = sortperm(angles)
+  bz = bz[p, :]
+  iu = indexin(unique(angles[p]), angles[p]) # unique angle indices
+  return bz[iu, :]
+end
+
+function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
+    nv = size(verts, 1)
+    p = reshape([], 0, 2)
+    newvert = zeros(2)
+    if typeof(res) <: Integer
+        if close
+            for i = 1:nv
+                ip1 = mod(i, nv) + 1
+                for j = 1:res
+                    newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res
+                    newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res
+                    p = [p; newvert']
+                end
+            end
+        else
+            for  i= 1:(nv-1)
+                for j = 1:res
+                    newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res
+                    newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res
+                    p = [p; newvert']
+                end
+            end
+            p = [p; verts[end, :]']  # the last vertex is not attended in the loop, so we add it here
+        end
+    else
+        if close
+            @assert length(res) == nv
+            for i = 1:nv
+                ip1 = mod(i, nv) + 1
+                for j = 1:res[i]
+                    newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res[i]
+                    newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res[i]
+                    p = [p; newvert']
+                end
+            end
+        else
+            @assert length(res) == (nv-1)
+            for i = 1:(nv-1)
+                for j = 1:res[i]
+                    newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res[i]
+                    newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res[i]
+                    p = [p; newvert']
+                end
+            end
+            p = [p; verts[end, :]']
+        end
+    end
+    return p
+end
+function grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
+    ## POLYGON_GRID _POINTS computes points on a polygonal grid.
+    #  Parameters:
+    #    Input, real v[nv,v2], the coordinates of the vertices.
+    #    Input, integer n, the number of subintervals.
+    nv = size(v, 1)
+    # Determine the centroid, and use it as the first grid point.
+    vc = zeros(1, 2)
+    vc[1, 1] = sum(v[1:nv, 1])/nv
+    vc[1, 2] = sum(v[1:nv, 2])/nv
+    # Initiate grid container
+    xyg = reshape([], 0, 2)
+
+    xyg = [xyg; vc]
+
+    # Consider each triangle formed by two consecutive vertices and the centroid,
+    # but skip the first line of points.
+    for l = 1:nv
+        lp1 = mod(l, nv) + 1
+        for i = 1:n
+            for j = 0:(n - i)
+                k = n - i - j
+                newv = (i*v[l, :] + j*v[lp1, :] + k*vc[1, :])/n
+                xyg = [xyg; newv']
+            end
+        end
+    end
+    return xyg
+end
+
+"""
+  PlotBZ(L::Lattice2D)
+# Arguments
+  - `L::Lattice2D`: 2D lattice object
+"""
+function PlotBZ(L::Lattice2D)
+  bz = ConstructWZC(L.R[1, :], L.R[2, :])
+  Gv = L.G
+  #g1 = sqrt(Gv[1, 1]^2 + Gv[1, 2]^2)
+  #g2 = sqrt(Gv[2, 1]^2 + Gv[2, 2]^2)
+  n1 = [-Gv[1, 2], Gv[1, 1]]
+  n2 = [-Gv[2, 2], Gv[2, 1]]
+
+  pos1 = 0.7.*Gv[1, :] + 0.12*n1
+  pos2 = 0.7.*Gv[2, :] + 0.12*n2
+
+  fig, ax = subplots(1, 1)
+  ax[:fill](bz[:, 1], bz[:, 2], facecolor="none", edgecolor="purple", linewidth=3)
+
+  ax[:set_aspect]("equal")
+  ax[:arrow](0, 0, Gv[1, 1], Gv[1, 2], fc="k", ec="k", head_width=0.3, head_length=0.8, width=0.05, overhang=0.1)
+  ax[:arrow](0, 0, Gv[2, 1], Gv[2, 2], fc="k", ec="k", head_width=0.3, head_length=0.8, width=0.05, overhang=0.1)
+
+  ax[:text](pos1[1], pos1[2] , "g\$_1\$", fontsize = 16)
+  ax[:text](pos2[1], pos2[2], "g\$_2\$", fontsize = 16)
+
+  ax[:tick_params](color="none", labelcolor="none")
+  #ax.spines["top"][:set_edgecolor]("none")
+  #ax.spines["bottom"][:set_edgecolor]("none")
+  #ax.spines["left"][:set_edgecolor]("none")
+  #ax.spines["right"][:set_edgecolor]("none")
+  tight_layout()
+end
