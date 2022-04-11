@@ -3,8 +3,20 @@ using DipoleLattice
 
 makedocs(
     sitename = "DipoleLattice",
-    format = Documenter.HTML(),
+    authors="Vahagn Mkhitaryan",
     modules = [DipoleLattice]
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://github.com/vmkhit/DipoleLattice.jl",
+        assets=String[],
+    ),
+    pages=[
+        "Home" => "index.md",
+        "Lattice"=>"lattice.md",
+        "Multicomponent"=> "multilattice.md",
+        "Supported Lattice"=> "supportedlattice.md",
+        "TMM" => "tmm.md"
+    ],
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
