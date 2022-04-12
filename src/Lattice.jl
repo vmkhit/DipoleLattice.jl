@@ -16,43 +16,34 @@ struct Lattice2D
     if id == "S"    # Square
       a = args[1]
       R = [a 0; 0 a]
-      G = (2π/a).*[1 0; 0 1]
       AreaWZC = a*a
     elseif id == "H" # hexagonal
       a = args[1]
       R = [0 -a; sqrt(3)*a/2 a/2]
-      G = (2π/a).*[1/sqrt(3) -1; 2/sqrt(3) 0]
       AreaWZC = a*a*sqrt(3)/2
-      IBZLabels = ["Γ", "K", "M"]
-      fc = [0 0; 2/3 1/3; 1/2 0]
     elseif id == "RC"        # rectangular centered
       a, b = args[1:2]
       R = [a/2 b/2; -a/2 b/2]
-      G = (2π/a).*[1 a/b; -1 a/b]
       AreaWZC = a*b
-      IBZLabels = ["Γ", "X", "S", "Y"]
-      fc = [0 0; 1/2 0; 1/2 1/2; 0 1/2]
     elseif id == "RP"         # Rectangular primitive
       a, b = args[1:2]
       R = [a 0; 0 b]
-      G = (2π/a).*[1 0; 0 a/b]
       AreaWZC = a*b
     elseif id == "O"    # Oblique
       a, b, α = args[1:3]
       R = [a 0; b*cos(α) b*sin(α)]
-      G = (2π/a).*[1 -cot(α); 0 (a/b)*csc(α)]
       AreaWZC = a*b*sin(α)
     elseif isempty(id)  # lattice is specified with unit vectors
       a1  = args[1]
       a2  = args[2]
       R = [a1'; a2']
-      g1 = 2π*[ a2[2], -a2[1]] /( a1[1]*a2[2] - a1[2]*a2[1])
-      g2 = 2π*[-a1[2],  a1[1]] /(-a2[1]*a1[2] + a2[2]*a1[1])
-      G = [g1'; g2']
       AreaWZC = abs(a1[1]*a2[2] - a1[2]*a2[1])
     else
       throw("Lattice type not defined")
     end
+    g1 = 2π*[ R[2, 2], -R[2, 1]] /( R[1, 1]*R[2, 2] - R[1, 2]*R[2, 1])
+    g2 = 2π*[-R[1, 2],  R[1, 1]] /(-R[2, 1]*R[1, 2] + R[2, 2]*R[1, 1])
+    G = [g1'; g2']
     AreaBZ = 4π^2/AreaWZC
     return new(id, R, G, AreaWZC, AreaBZ)
   end
@@ -69,21 +60,23 @@ This function implements the construction of the BZ of a 2D lattice following th
   Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
   SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
 """
-function ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
-  a = sqrt(s1[1]^2 + s1[2]^2)
-  b = sqrt(s2[1]^2 + s2[2]^2)
+function ConstructWZC(R::Array{<:Real})
 
-  ψ = asin((s1[1]*s2[1] + s1[2]*s2[2])/(a*b))
+  a = sqrt(R[1, 1]^2 + R[1, 2]^2)
+  b = sqrt(R[2, 1]^2 + R[2, 2]^2)
+  s1_dot_s2 = R[1, 1]*R[2, 1] + R[1, 2]*R[2, 2]
+  ψ = asin(s1_dot_s2/(a*b))
+
   cψ, sψ = cos(ψ), sin(abs(ψ))
 
   # construct the perpendicular vectors and check the directions
-  sp1 = [-s1[2], s1[1]]
-  sp2 = [-s2[2], s2[1]]
+  sp1 = [-R[1, 2], R[1, 1]]./a
+  sp2 = [-R[2, 2], R[2, 1]]./b
 
-  if (sp2[1]*s1[1] + sp2[2]*s1[2]) < 0
+  if (sp2[1]*R[1, 1] + sp2[2]*R[1, 2]) < 0
     sp2 = -sp2
   end
-  if (sp1[1]*s2[1] + sp1[2]*s2[2]) < 0
+  if (sp1[1]*R[2, 1] + sp1[2]*R[2, 2]) < 0
     sp2 = -sp1
   end
 
@@ -97,9 +90,9 @@ function ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
   h = π*(ns2 - ns1*sψ)/cψ
 
   bz = zeros(6, 2)
-  bz[1, :] = π.*ss2 + g.*s1./a
-  bz[2, :] = π.*ss2 - g.*s1./a
-  bz[3, :] = π.*ss1 + sign(ψ)*h.*s2./b
+  bz[1, :] = π.*ss2 + g.*R[1, :]./a
+  bz[2, :] = π.*ss2 - g.*R[1, :]./a
+  bz[3, :] = π.*ss1 + sign(ψ)*h.*R[2,:]./b
   bz[4, :] = -bz[1, :]
   bz[5, :] = -bz[2, :]
   bz[6, :] = -bz[3, :]
@@ -110,6 +103,7 @@ function ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
   iu = indexin(unique(angles[p]), angles[p]) # unique angle indices
   return bz[iu, :]
 end
+
 
 function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
     nv = size(verts, 1)
@@ -196,7 +190,7 @@ end
   - `L::Lattice2D`: 2D lattice object
 """
 function PlotBZ(L::Lattice2D)
-  bz = ConstructWZC(L.R[1, :], L.R[2, :])
+  bz = ConstructWZC(L.R)
   Gv = L.G
   #g1 = sqrt(Gv[1, 1]^2 + Gv[1, 2]^2)
   #g2 = sqrt(Gv[2, 1]^2 + Gv[2, 2]^2)
@@ -206,7 +200,7 @@ function PlotBZ(L::Lattice2D)
   pos1 = 0.7.*Gv[1, :] + 0.12*n1
   pos2 = 0.7.*Gv[2, :] + 0.12*n2
 
-  fig, ax = subplots(1, 1)
+  fig, ax = PyPlot.subplots(1, 1)
   ax[:fill](bz[:, 1], bz[:, 2], facecolor="none", edgecolor="purple", linewidth=3)
 
   ax[:set_aspect]("equal")
@@ -221,5 +215,5 @@ function PlotBZ(L::Lattice2D)
   #ax.spines["bottom"][:set_edgecolor]("none")
   #ax.spines["left"][:set_edgecolor]("none")
   #ax.spines["right"][:set_edgecolor]("none")
-  tight_layout()
+  PyPlot.tight_layout()
 end
