@@ -190,6 +190,7 @@ end
   - `L::Lattice2D`: 2D lattice object
 """
 function PlotBZ(L::Lattice2D)
+  using PyPlot
   bz = ConstructWZC(L.R)
   Gv = L.G
   #g1 = sqrt(Gv[1, 1]^2 + Gv[1, 2]^2)
