@@ -34,7 +34,7 @@
   RT_calc(p::Integer, lambda::Real, kp::Vector{<:Real}, S::Stack)
 ```
 ```@raw html
-<img src="../../Example Pictures/exampleTMM.png" width="60%"/>
+  <img src="Pictures/exampleTMM.png" width="60%"/>
 ```
 ```@docs
   ellipso_tmm(lambda::Real, kp::Vector{<:Real}, S::Stack)
