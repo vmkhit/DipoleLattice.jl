@@ -1,7 +1,7 @@
 # DipoleLattice.jl
 
 <div align="center">
-  <img src="docs/Example Pictures/mapping.png" alt="Dipole Lattice Logo"></img>
+  <img src="docs/src/Pictures/mapping.png" alt="Dipole Lattice Logo"></img>
 </div>
 
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://vmkhit.github.io/DipoleLattice.jl/dev)
