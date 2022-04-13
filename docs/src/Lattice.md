@@ -9,7 +9,7 @@
 ```
 
 ```@docs
-  ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
+  ConstructWZC(R::Array{<:Real})
 ```
 
 ```@docs

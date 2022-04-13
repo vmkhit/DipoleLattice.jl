@@ -54,8 +54,7 @@ end
 """
   ConstructWZC(R::Array{<:Real})
 # Arguments
-  - `s1::Vector{<:Real}`: 1st unit vector of the 2D lattice
-  - `s2::Vector{<:Real}`: 2nd unit vector of the 2D lattice
+  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, a1= R[1, :], a2 = R[2, :]
 This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
   Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
   SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
