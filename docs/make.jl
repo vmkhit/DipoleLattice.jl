@@ -2,12 +2,14 @@ using Documenter
 using DipoleLattice
 
 makedocs(
-    sitename = "DipoleLattice",
+    modules=[DipoleLattice],
     authors="Vahagn Mkhitaryan",
-    modules = [DipoleLattice],
+    repo="https://github.com/vmkhit/DipoleLattice.jl.git",
+    sitename="DipoleLattice.jl",
     format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", "true") == "true",
-        ),
+        prettyurls=get(ENV, "CI", "false") == "true",
+        assets=String[],
+    ),
     pages=[
         "Dipole Lattice" => "index.md",
         "Reflection and Transmission"=>"rt.md",
@@ -15,7 +17,7 @@ makedocs(
         "Multicomponent"=> "multilattice.md",
         "Supported Lattice"=> "supportedlattice.md",
         "TMM" => "tmm.md",
-        "Lattice Dispersion" => "dispersion.md",
+        "Lattice Dispersion" => "dispersion.md"
     ],
 )
 
