@@ -52,7 +52,7 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
-  ConstructWZC(s1::Vector{<:Real}, s2::Vector{<:Real})
+  ConstructWZC(R::Array{<:Real})
 # Arguments
   - `s1::Vector{<:Real}`: 1st unit vector of the 2D lattice
   - `s2::Vector{<:Real}`: 2nd unit vector of the 2D lattice
