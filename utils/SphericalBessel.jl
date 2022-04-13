@@ -43,48 +43,6 @@ function besselkp(n::Real, x::Number)
 end
 
 
-# Define the modified Bessel Function of the second kind with complex order & argument
-function CBesselK(n::Number, z::Number)
-
-	Knu = exp(lgamma(nu))  * (z/2)^(-nu)
-	Kmu = exp(lgamma(-nu)) * (z/2)^nu
-
-	bound = 20
-
-	precision = 1e-10
-
-	s = 0
-
-	if (abs(z) < 10)
-		for i = 0:bound
-			var = i
-			facto = factorial(i)
-
-			r = 0.5 * Knu * ((z/2)^(2*var) * exp(-lgamma(1+var-nu)+lgamma(1-nu))/facto) + 0.5 * Kmu * ((z/2)^(2*var) * exp(-lgamma(1+var+nu)+lgamma(1+nu))/facto)
-			s+=r
-
-			if ((abs(real(r/s))<precision)&&(abs(imag(r/s))<precision))
-				break
-			end
-		end
-	else
-		for i = 0:bound
-			var = i
-			facto = factorial(i)
-
-			r = sqrt(pi/(2*z)) * exp(-z) * exp(lgamma(0.5+var+nu)+lgamma(0.5+var-nu)-lgamma(0.5+nu)-lgamma(0.5-nu)/facto) * (-1/2*z)^var
-			s+=r
-
-			if ((abs(real(r/s))<precision)&&(abs(imag(r/s))<precision))
-				break
-			end
-		end
-	end
-
-	return s
-
-end
-
 ################### Spherical bessel functions and their derivatives ################
 
 function sp_besselj(n::Real, x::Number)

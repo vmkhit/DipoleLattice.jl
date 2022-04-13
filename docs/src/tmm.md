@@ -36,12 +36,6 @@
 ```@raw html
 <img src="../Example Pictures/ExampleTMM.png" width="60%"/>
 ```
-
-
-
-
-
-
 ```@docs
   ellipso_tmm(lambda::Real, kp::Vector{<:Real}, S::Stack)
 ```
