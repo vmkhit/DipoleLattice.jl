@@ -5,7 +5,7 @@
 ![Output](Pictures/lattice2D.png)
 
 ```@raw html
-<img src="Pictures/lattice2D.png" width="75%"/>
+<img src="../Pictures/lattice2D.png" width="75%"/>
 ```
 
 ```@docs
