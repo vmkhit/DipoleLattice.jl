@@ -112,7 +112,7 @@ end
     - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
     it will take a ``N`` sampling point between any pair of vertives. One can specify also list of integers with number
     of points between each consequitive vertices.
-    - `close::Bool=true`: Boolian that defines if the path is closed or not. 
+    - `close::Bool=true`: Boolian that defines if the path is closed or not.
 """
 function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
     nv = size(verts, 1)
@@ -163,6 +163,14 @@ function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integ
     end
     return p
 end
+"""
+    grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
+    Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
+    Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
+    # Arguments
+    - `v::Array{<:Real, 2}`: Vertices of the polygon, specified as ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
+    - 
+"""
 function grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
     ## POLYGON_GRID _POINTS computes points on a polygonal grid.
     #  Parameters:
