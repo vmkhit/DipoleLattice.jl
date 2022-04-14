@@ -10,6 +10,9 @@ module DipoleLattice
     import LinearAlgebra
     import DelimitedFiles
     import Dierckx
+    using PyPlot
+    pygui(true)
+    
     include("Lattice.jl")
     #include("Wijers.jl")
     include("DyadSum.jl")

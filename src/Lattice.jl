@@ -165,7 +165,7 @@ function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integ
 end
 
 """
-  grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
+grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
   Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
   Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
 # Arguments
