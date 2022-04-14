@@ -6,6 +6,11 @@ makedocs(
     authors="Vahagn Mkhitaryan",
     repo="https://github.com/vmkhit/DipoleLattice.jl.git",
     sitename="DipoleLattice.jl",
+    source = "src",
+    build = "build",
+    clean = true,
+    doctest = true,
+    highlightsig=true,
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         assets=String[],
