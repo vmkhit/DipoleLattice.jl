@@ -4,15 +4,15 @@
   # Arguments
   - `id::String`: String that specify one of the five 2D bravis lattices or a gneral 2D lattice as described below.
   # Description
-    The 'id' argument takes the following values, `id="S"` for square, id="H" for hexagonal,
-    id="RC" for centered rectangular,    `id="RP"` for primitive recangular and id="O" for
-    oblique lattices. If id is specified as an empty string id="" one has to specify the direct
-    lattice vectors ``a_1`` and ``a_2`` as an optional arguments. If id = "S" or "H" one has to
-    specify the lattice vector length as an optional argument. Similarly, for the case when
-    id="RC" or id="RP" one has to dpecify the lengths of the lattice vectors along each orthogonal
-    direction. For Oblique lattice, besides the lattice vector lengths one has to specify also
-    the angle between these vectors as the 3rd optional argumen. Below we show examples of usage
-    of all the lattice types.
+    The id argument takes the following values, id="S" for square, id="H" for hexagonal,
+    id="RC" for centered rectangular, id="RP" for primitive recangular and id="O" for
+    oblique lattices. If id is specified as an empty string id="" one has to specify the
+    direct lattice vectors ``a_{1}`` and ``a_{2}`` as an optional arguments. If id = "S"
+    or "H" one has to specify the lattice vector length as an optional argument. Similarly,
+    for the case when id="RC" or id="RP" one has to dpecify the lengths of the lattice vectors
+    along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
+    one has to specify also the angle between these vectors as the 3rd optional argumen. Below
+    we show examples of usage of all the lattice types.
   # Example usage
   * To define a square lattice with unit vector 5 we can call.
   ```julia-repl
