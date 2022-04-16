@@ -2,37 +2,39 @@
     lattice2D
   This data struct constructs 2D lattice object and outputs its properties.
   # Arguments
-  - `id::String`: String that specify one of the 5 2D bravis lattices described below. If `id=""` the direct lattice unit vectors need to be specified.
+  - `id::String`: String that specify one of the five 2D bravis lattices or a gneral 2D lattice as described below.
   # Description
-    The `id` argument takes the following values, `id="S"` for square, `id="H"` for hexagonal, `id="RC"` for centered rectangular, `id="RP"` for primitive recangular
-    and `id="O"` for oblique lattices. If `id` is specified as an empty string `id=""` one has to specify the direct lattice vectors ``a_1`` and ``a_2`` as an optional arguments.
-    If `id = "S"` or `"H"` one has to specify the lattice vector length as an optional argument. Similarly, for the case when `id="RC"` or `id="RP"` one has to dpecify the lengths of the lattice vectors along each orthogonal direction.
-    For Oblique lattice, besides the lattice vector lengths one has to specify also the angle between these vectors as the 3rd optional argumen. Below we show examples of usage of all the lattice types.
+    The 'id' argument takes the following values, `id="S"` for square, id="H" for hexagonal, id="RC" for centered rectangular,
+    `id="RP"` for primitive recangular and id="O" for oblique lattices. If id is specified as an empty string id="" one has to
+    specify the direct lattice vectors ``a_1`` and ``a_2`` as an optional arguments. If id = "S" or "H" one has to specify the
+    lattice vector length as an optional argument. Similarly, for the case when id="RC" or id="RP" one has to dpecify the lengths
+    of the lattice vectors along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths one has to
+    specify also the angle between these vectors as the 3rd optional argumen. Below we show examples of usage of all the lattice types.
   # Example usage
   * To define a square lattice with unit vector 5 we can call.
-  ```julia
-    L = Lattice("S", 5)
+  ```julia-repl
+    julia> L = Lattice("S", 5)
   ```
   * Hexagonal lattice with lattice vector length 4 can be defined as
-  ```julia
-    L = Lattice("S", 4)
+  ```julia-repl
+    julia> L = Lattice("S", 4)
   ```
   * Rectangular lattices with lattice vector lengths `a = 2`, `b = 4` can be defined as.
-  ```julia
-    L = Lattice("RC", a, b)
+  ```julia-repl
+    julia> L = Lattice("RC", a, b)
   ```
   ## or
-  ```julia
-    L = Lattice("RP", a, b)
+  ```julia-repl
+    julia> L = Lattice("RP", a, b)
   ```
   * The oblique lattice takes addtional argument ``\\psi`` the angle between the vectors, assuming ``a_{1}`` is along the `x`-axis.
   ```julia
-    L = Lattice("O", a, b, ψ)
+    julia> L = Lattice("O", a, b, ψ)
   ```
   * Finally the general lattice with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and ``a_{1} = [a_{2x}, a_{2y}]``.
   ```julia
-    L = Lattice("", a1, a2)
-  ```   
+    julia> L = Lattice("", a1, a2)
+  ```
 """
 struct Lattice2D
   id::String
