@@ -37,7 +37,7 @@
   ```
   * Finally the general lattice with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and
   ``a_{1} = [a_{2x}, a_{2y}]``.
-  ```julia
+  ```julia-repl
     julia> L = Lattice("", a1, a2)
   ```
 """
