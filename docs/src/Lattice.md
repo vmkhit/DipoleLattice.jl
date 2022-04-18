@@ -29,11 +29,11 @@ f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
 ```
 
 # Examples
-* To define a **square lattice** with unit vector 5 we can call.
+* To define a **square lattice** with unit vector length = `a = 5` we can call.
 ```@julia-repl
   julia> L = Lattice("S", 5)
 ```
-* **Hexagonal lattice** with lattice vector length 4 can be defined as
+* **Hexagonal lattice** with unit vector length  `a = 4` can be defined as
 ```@julia-repl
   julia> L = Lattice("S", 4)
 ```
@@ -41,11 +41,11 @@ f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
 ```@julia-repl
   julia> L = Lattice("RC", a, b)
 ```
-## or
+The primitive rectangular lattice can be constructed using:
 ```@julia-repl
   julia> L = Lattice("RP", a, b)
 ```
-* The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors, assuming ``a_{1}`` is along the `x`-axis.
+* The **oblique lattice** takes additional argument ``\psi`` the angle between the vectors, assuming ``a_{1}`` is along the `x`-axis.
 
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
