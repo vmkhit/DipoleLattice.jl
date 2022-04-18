@@ -15,7 +15,11 @@
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
   one has to specify also the angle between these vectors as the 3rd optional argumen. Below
   we show examples of usage of all the lattice types.
-# Example usage
+
+  ```@math
+  f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
+  ```
+# Examples
 * To define a **square lattice** with unit vector 5 we can call.
 ```@julia-repl
   julia> L = Lattice("S", 5)
