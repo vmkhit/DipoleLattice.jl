@@ -102,7 +102,6 @@ function ConstructWZC(R::Array{<:Real})
 end
 
 """
-  make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 Generates linear interpolation paths between the vertices provided in the list vertex.
 # Arguments
 - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
@@ -162,7 +161,6 @@ function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integ
 end
 
 """
-  grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
 Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
 Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
 # Arguments
@@ -200,7 +198,6 @@ function grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
 end
 
 """
-  PlotBZ(L::Lattice2D)
 # Arguments
   - `L::Lattice2D`: 2D lattice object
   This function plots the 1st Brillouin zone of the 2D lattice
