@@ -6,14 +6,7 @@
 <img src="../Pictures/lattice2D.png" width="75%"/>
 ```
 # Description
-  The id argument takes the following values, id="S" for square, id="H" for hexagonal,
-  id="RC" for centered rectangular, id="RP" for primitive recangular and id="O" for
-  oblique lattices. If id is specified as an empty string id="" one has to specify the
-  direct lattice vectors ``a_{1}`` and ``a_{2}`` as an optional arguments. If id = "S"
-  or "H" one has to specify the lattice vector length as an optional argument. Similarly,
-  for the case when id="RC" or id="RP" one has to specify the lengths of the lattice vectors
-  along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
-  one has to specify also the angle between these vectors as the 3rd optional argument.
+  The `id` argument takes the following values. The table below shows the `id` values and corresponding lattice types.
 
 | Lattice type              | id   |   
 |:-------------------------:|:----:|
@@ -23,6 +16,13 @@
 | **Primitive Rectangular** | "RP" |
 | **Oblique**               | "O"  |
 | **General**               | ""   |
+
+If `id` = "S" or "H" one has to specify the lattice vector length as an optional argument.
+Similarly, for the case when `id`="RC" or `id`="RP" one has to specify the lengths of the lattice vectors
+along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
+one has to specify also the angle between these vectors as the 3rd optional argument.
+If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``a_{1}`` and ``a_{2}``
+as an optional arguments.
 
 ```math
 f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
