@@ -19,6 +19,12 @@
   ```@math
   f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
   ```
+
+| Column One | Column Two | Column Three |
+|:---------- | ---------- |:------------:|
+| Row `1`    | Column `2` |              |
+| *Row* 2    | **Row** 2  | Column ``3`` |
+
 # Examples
 * To define a **square lattice** with unit vector 5 we can call.
 ```@julia-repl
