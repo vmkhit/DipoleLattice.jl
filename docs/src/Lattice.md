@@ -58,15 +58,17 @@ The primitive rectangular lattice can be constructed using:
 ```@docs
   ConstructWZC(R::Array{<:Real})
 ```
-
 ```@docs
   make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
 
 ```@docs
-  grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
-```
-
-```@docs
   PlotBZ(L::Lattice2D)
+```
+# Example
+```@julia-repl
+  julia> L = Lattice("O", 1, 1, π/4), PlotBZ(L)
+```
+```@raw html
+<img src="../Pictures/PlotBZ.png" width="75%"/>
 ```
