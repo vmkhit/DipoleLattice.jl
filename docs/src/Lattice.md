@@ -11,14 +11,9 @@
   oblique lattices. If id is specified as an empty string id="" one has to specify the
   direct lattice vectors ``a_{1}`` and ``a_{2}`` as an optional arguments. If id = "S"
   or "H" one has to specify the lattice vector length as an optional argument. Similarly,
-  for the case when id="RC" or id="RP" one has to dpecify the lengths of the lattice vectors
+  for the case when id="RC" or id="RP" one has to specify the lengths of the lattice vectors
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
   one has to specify also the angle between these vectors as the 3rd optional argument.
-
-| Column One | Column Two | Column Three |
-|:---------- | ---------- |:------------:|
-| Row `1`    | Column `2` |              |
-| *Row* 2    | **Row** 2  | Column ``3`` |
 
 # Examples
 * To define a **square lattice** with unit vector 5 we can call.
