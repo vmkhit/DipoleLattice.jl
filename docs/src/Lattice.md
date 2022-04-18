@@ -13,10 +13,9 @@
   or "H" one has to specify the lattice vector length as an optional argument. Similarly,
   for the case when id="RC" or id="RP" one has to dpecify the lengths of the lattice vectors
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
-  one has to specify also the angle between these vectors as the 3rd optional argumen. Below
-  we show examples of usage of all the lattice types.
+  one has to specify also the angle between these vectors as the 3rd optional argument.
 
-  ```@math
+  ```math
   f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
   ```
 
