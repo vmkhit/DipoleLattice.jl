@@ -15,10 +15,6 @@
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
   one has to specify also the angle between these vectors as the 3rd optional argument.
 
-  ```math
-  f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
-  ```
-
 | Column One | Column Two | Column Three |
 |:---------- | ---------- |:------------:|
 | Row `1`    | Column `2` |              |
@@ -43,9 +39,11 @@
 ```
 * The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors,
   assuming ``a_{1}`` is along the `x`-axis.
+
 <span style="color:green;font-weight:700;font-size:20px">
     Hi Vahagn
 </span>
+
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
 ```
