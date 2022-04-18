@@ -203,6 +203,7 @@ end
   PlotBZ(L::Lattice2D)
 # Arguments
   - `L::Lattice2D`: 2D lattice object
+  This function plots the 1st Brillouin zone of the 2D lattice
 """
 function PlotBZ(L::Lattice2D)
   bz = ConstructWZC(L.R)
