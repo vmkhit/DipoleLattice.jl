@@ -16,15 +16,15 @@
   one has to specify also the angle between these vectors as the 3rd optional argumen. Below
   we show examples of usage of all the lattice types.
 # Example usage
-* To define a square lattice with unit vector 5 we can call.
+* To define a **square lattice** with unit vector 5 we can call.
 ```@julia-repl
   julia> L = Lattice("S", 5)
 ```
-* Hexagonal lattice with lattice vector length 4 can be defined as
+* **Hexagonal lattice** with lattice vector length 4 can be defined as
 ```@julia-repl
   julia> L = Lattice("S", 4)
 ```
-* Rectangular lattices with lattice vector lengths `a = 2`, `b = 4` can be defined as.
+* **Rectangular lattices** with unit vector lengths `a = 2`, `b = 4` can be defined as.
 ```@julia-repl
   julia> L = Lattice("RC", a, b)
 ```
@@ -32,12 +32,12 @@
 ```@julia-repl
   julia> L = Lattice("RP", a, b)
 ```
-* The oblique lattice takes addtional argument ``\\psi`` the angle between the vectors,
+* The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors,
   assuming ``a_{1}`` is along the `x`-axis.
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
 ```
-* Finally the general lattice with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and
+* Finally the **general lattice** with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and
 ``a_{1} = [a_{2x}, a_{2y}]``.
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
