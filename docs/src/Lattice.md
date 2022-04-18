@@ -15,6 +15,15 @@
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
   one has to specify also the angle between these vectors as the 3rd optional argument.
 
+| id | Lattice type |
+|:----:|:-------------:|
+| "S"  | **Square**    |
+| "H"  | **Hexagonal** |
+| "RC" | **Centered Rectangular**  |
+| "RP" | **Primitive Rectangular** |
+| "O"  | **Oblique** |
+| "" | **General** |
+
 # Examples
 * To define a **square lattice** with unit vector 5 we can call.
 ```@julia-repl
@@ -34,10 +43,6 @@
 ```
 * The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors,
   assuming ``a_{1}`` is along the `x`-axis.
-
-<span style="color:green;font-weight:700;font-size:20px">
-    Hi Vahagn
-</span>
 
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
