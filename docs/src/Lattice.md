@@ -15,18 +15,43 @@
   along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
   one has to specify also the angle between these vectors as the 3rd optional argument.
 
-| id | Lattice type |
-|:----:|:-------------:|
-| "S"  | **Square**    |
-| "H"  | **Hexagonal** |
-| "RC" | **Centered Rectangular**  |
-| "RP" | **Primitive Rectangular** |
-| "O"  | **Oblique** |
-| "" | **General** |
+| Lattice type              | id   |   
+|:-------------------------:|:----:|
+| **Square**                | "S"  |
+| **Hexagonal**             | "H"  |
+| **Centered Rectangular**  | "RC" |
+| **Primitive Rectangular** | "RP" |
+| **Oblique**               | "O"  |
+| **General**               | ""   |
 
 ```math
 f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
 ```
+
+<style>
+    .heatMap {
+        width: 70%;
+        text-align: center;
+    }
+    .heatMap th {
+        background: grey;
+        word-wrap: break-word;
+        text-align: center;
+    }
+    .heatMap tr:nth-child(1) { background: red; }
+    .heatMap tr:nth-child(2) { background: orange; }
+    .heatMap tr:nth-child(3) { background: green; }
+</style>
+
+<div class="heatMap">
+
+| Everything | in this table | is Centered | and the table will only take up 70% of the screen width |
+| -- | -- | -- | -- |
+| This | is | a | Red Row |
+| This | is | an | Orange Row |
+| This | is | a | Green Row |
+
+</div>
 
 # Examples
 * To define a **square lattice** with unit vector 5 we can call.
