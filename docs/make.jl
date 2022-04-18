@@ -12,7 +12,7 @@ makedocs(
     doctest = true,
     highlightsig=true,
     format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", "true") == "true",
+        prettyurls=get(ENV, "CI", "false") == "true",
         assets=String[],
     ),
     pages=[
