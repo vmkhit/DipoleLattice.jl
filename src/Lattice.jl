@@ -50,7 +50,6 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
-  ConstructWZC(R::Array{<:Real})
 # Arguments
 - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, a1= R[1, :], a2 = R[2, :]
 This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
