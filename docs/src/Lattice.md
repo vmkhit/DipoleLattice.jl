@@ -21,7 +21,7 @@ If `id` = "S" or "H" one has to specify the lattice vector length as an optional
 Similarly, for the case when `id`="RC" or `id`="RP" one has to specify the lengths of the lattice vectors
 along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
 one has to specify also the angle between these vectors as the 3rd optional argument.
-If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``a_{1}`` and ``a_{2}``
+If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
 as an optional arguments.
 
 ```math
@@ -45,12 +45,12 @@ The primitive rectangular lattice can be constructed using:
 ```@julia-repl
   julia> L = Lattice("RP", a, b)
 ```
-* The **oblique lattice** takes additional argument ``\psi`` the angle between the vectors, assuming ``a_{1}`` is along the `x`-axis.
+* The **oblique lattice** takes additional argument ``\psi`` the angle between the vectors, assuming ``\vec{a}_{1}`` is along the `x`-axis.
 
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
 ```
-* Finally the **general lattice** with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and ``a_{1} = [a_{2x}, a_{2y}]``.
+* Finally the **general lattice** with unit vectors ``\vec{a}_{1} = [a_{1x}, a_{1y}]`` and ``\vec{a}_{1} = [a_{2x}, a_{2y}]``.
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
 ```
