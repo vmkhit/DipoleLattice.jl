@@ -44,6 +44,9 @@
 ```
 * The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors,
   assuming ``a_{1}`` is along the `x`-axis.
+<span style="color:green;font-weight:700;font-size:20px">
+    Hi Vahagn
+</span>
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
 ```
@@ -56,6 +59,7 @@
 ```@docs
   ConstructWZC(R::Array{<:Real})
 ```
+
 ```@docs
   make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
