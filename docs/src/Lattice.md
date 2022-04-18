@@ -24,6 +24,10 @@
 | "O"  | **Oblique** |
 | "" | **General** |
 
+```math
+f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
+```
+
 # Examples
 * To define a **square lattice** with unit vector 5 we can call.
 ```@julia-repl
@@ -41,14 +45,12 @@
 ```@julia-repl
   julia> L = Lattice("RP", a, b)
 ```
-* The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors,
-  assuming ``a_{1}`` is along the `x`-axis.
+* The **oblique lattice** takes addtional argument ``\psi`` the angle between the vectors, assuming ``a_{1}`` is along the `x`-axis.
 
 ```@julia-repl
   julia> L = Lattice("O", a, b, ψ)
 ```
-* Finally the **general lattice** with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and
-``a_{1} = [a_{2x}, a_{2y}]``.
+* Finally the **general lattice** with unit vectors ``a_{1} = [a_{1x}, a_{1y}]`` and ``a_{1} = [a_{2x}, a_{2y}]``.
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
 ```
