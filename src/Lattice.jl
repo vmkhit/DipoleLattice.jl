@@ -50,7 +50,7 @@ end
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
 # Arguments
-  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_{1}= R[1, :]``, ``\vec{a}_{2} = R[2, :]``
+  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``a_{1}`` = R[1, :], ``a_{2}`` = R[2, :].
 """
 function ConstructWZC(R::Array{<:Real})
 
