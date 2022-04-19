@@ -49,7 +49,6 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
-  ConstructWZC(R::Array{<:Real})
 # Arguments
   - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_1``= R[1, :], ``\vec{a}_2`` = R[2, :]
   This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
@@ -102,7 +101,7 @@ end
 
 """
   MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
-Generates linear interpolation paths between the vertices provided in the list vertex.
+  Generates linear interpolation paths between the vertices provided in the list vertex.
 # Arguments
   - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
   - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
