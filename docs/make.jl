@@ -1,8 +1,6 @@
 using Documenter
 using DipoleLattice
 
-DocMeta.setdocmeta!(DipoleLattice, :DocTestSetup, :(using DipoleLattice); recursive=true)
-
 makedocs(
     modules=[DipoleLattice],
     authors="Vahagn Mkhitaryan",
