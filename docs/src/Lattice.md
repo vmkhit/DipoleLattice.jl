@@ -21,7 +21,6 @@ If `id = "S"` or `id = "H"` one has to specify the lattice vector length as an o
 one has to specify also the angle between these vectors as the 3rd optional argument. If `id` is specified as an empty string `id = ""` one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
 as an optional arguments.
 
-
 # Examples
 * To define a **square lattice** with unit vector length = `a = 5` we can call.
 ```@julia-repl
