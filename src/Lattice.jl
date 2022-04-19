@@ -50,7 +50,7 @@ end
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
 # Arguments
-  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_1``= R[1, :], ``\vec{a}_2`` = R[2, :]
+  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_{1}``= R[1, :], ``\vec{a}_{2}`` = R[2, :]
   This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
   Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
   SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
