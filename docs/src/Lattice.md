@@ -65,7 +65,7 @@ SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
 ```@docs
   PlotBZ(L::Lattice2D)
 ```
-# Example
+## Example BZ construction
 ```@julia-repl
   julia> L = Lattice("O", 1, 1, π/4), PlotBZ(L)
 ```
