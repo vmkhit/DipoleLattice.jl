@@ -49,11 +49,7 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
-  ConstructWZC(R::Array{<:Real})
-  This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
-    Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
-    SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
-  # Arguments
+# Arguments
   - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``a_{1}``= R[1, :], ``a_{2}`` = R[2, :]
 """
 function ConstructWZC(R::Array{<:Real})
@@ -101,14 +97,13 @@ function ConstructWZC(R::Array{<:Real})
 end
 
 """
-  MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
   Generates linear interpolation paths between the vertices provided in the list vertex.
-  # Arguments
-    - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
-    - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
-    it will take a ``N`` sampling point between any pair of vertives. One can specify also list of integers with number
-    of points between each consequitive vertices.
-    - `close::Bool=true`: Boolian that defines if the path is closed or not.
+# Arguments
+  - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and ``v_{iy}`` = verts[i, 2].
+  - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
+  it will take a `N` sampling point between any pair of vertives. One can specify also list of integers with number
+  of points between each consequitive vertices.
+  - `close::Bool=true`: Boolian that defines if the path is closed or not.
 """
 function MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
   nv = size(verts, 1)
@@ -161,12 +156,11 @@ function MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer
 end
 
 """
-  PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
   Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
   Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
-  # Arguments
-    - `v::Array{<:Real, 2}`: Vertices of the polygon, specified as ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
-    - `n::Integer`: Number of subdivision along each edge of sub-triangles.
+# Arguments
+  - `v::Array{<:Real, 2}`: Vertices of the polygon, specified as ``v_{ix}`` = verts[i, 1] and ``v_{iy}`` = verts[i, 2].
+  - `n::Integer`: Number of subdivision along each edge of sub-triangles.
 """
 function PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
   nv = size(v, 1)

@@ -49,15 +49,16 @@ The primitive rectangular lattice can be constructed using:
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
 ```
-
 ```@docs
   ConstructWZC(R::Array{<:Real})
 ```
+This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
+Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
+SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
 
 ```@docs
   MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
-
 ```@docs
   PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
 ```
