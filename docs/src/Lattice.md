@@ -17,11 +17,8 @@
 | **Oblique**               | "O"  |
 | **General**               | ""   |
 
-If `id` = "S" or "H" one has to specify the lattice vector length as an optional argument.
-Similarly, for the case when `id`="RC" or `id`="RP" one has to specify the lengths of the lattice vectors
-along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
-one has to specify also the angle between these vectors as the 3rd optional argument.
-If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
+If `id` = "S" or "H" one has to specify the lattice vector length as an optional argument. Similarly, for the case when `id`="RC" or `id`="RP" one has to specify the lengths of the lattice vectors along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
+one has to specify also the angle between these vectors as the 3rd optional argument. If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
 as an optional arguments.
 
 ```math
@@ -57,9 +54,6 @@ The primitive rectangular lattice can be constructed using:
 
 ```@docs
   ConstructWZC(R::Array{<:Real})
-```
-```@docs
-  make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
 
 ```@docs

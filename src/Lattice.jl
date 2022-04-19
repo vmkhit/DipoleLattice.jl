@@ -1,5 +1,4 @@
 """
-    lattice2D
   This data struct constructs 2D lattice object and outputs its properties.
   # Arguments
   - `id::String`: String that specify one of the five 2D bravis lattices or a gneral 2D lattice as described below.
