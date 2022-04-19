@@ -49,7 +49,8 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
-  # Arguments
+  ConstructWZC(R::Array{<:Real})
+# Arguments
   - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_1``= R[1, :], ``\vec{a}_2`` = R[2, :]
   This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
   Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
@@ -100,8 +101,9 @@ function ConstructWZC(R::Array{<:Real})
 end
 
 """
-  Generates linear interpolation paths between the vertices provided in the list vertex.
-  # Arguments
+  make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
+Generates linear interpolation paths between the vertices provided in the list vertex.
+# Arguments
   - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
   - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
   it will take a ``N`` sampling point between any pair of vertives. One can specify also list of integers with number
@@ -109,54 +111,55 @@ end
   - `close::Bool=true`: Boolian that defines if the path is closed or not.
 """
 function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
-    nv = size(verts, 1)
-    p = reshape([], 0, 2)
-    newvert = zeros(2)
-    if typeof(res) <: Integer
-        if close
-            for i = 1:nv
-                ip1 = mod(i, nv) + 1
-                for j = 1:res
-                    newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res
-                    newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res
-                    p = [p; newvert']
-                end
-            end
-        else
-            for  i= 1:(nv-1)
-                for j = 1:res
-                    newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res
-                    newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res
-                    p = [p; newvert']
-                end
-            end
-            p = [p; verts[end, :]']  # the last vertex is not attended in the loop, so we add it here
+  nv = size(verts, 1)
+  p = reshape([], 0, 2)
+  newvert = zeros(2)
+  if typeof(res) <: Integer
+    if close
+      for i = 1:nv
+        ip1 = mod(i, nv) + 1
+        for j = 1:res
+          newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res
+          newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res
+          p = [p; newvert']
         end
+      end
     else
-        if close
-            @assert length(res) == nv
-            for i = 1:nv
-                ip1 = mod(i, nv) + 1
-                for j = 1:res[i]
-                    newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res[i]
-                    newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res[i]
-                    p = [p; newvert']
-                end
-            end
-        else
-            @assert length(res) == (nv-1)
-            for i = 1:(nv-1)
-                for j = 1:res[i]
-                    newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res[i]
-                    newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res[i]
-                    p = [p; newvert']
-                end
-            end
-            p = [p; verts[end, :]']
+      for i= 1:(nv-1)
+        for j = 1:res
+          newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res
+          newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res
+          p = [p; newvert']
         end
+      end
+      p = [p; verts[end, :]']  # the last vertex is not attended in the loop, so we add it here
     end
-    return p
+  else
+    if close
+      @assert length(res) == nv
+      for i = 1:nv
+        ip1 = mod(i, nv) + 1
+        for j = 1:res[i]
+          newvert[1] = verts[i, 1] + (j-1)*(verts[ip1, 1] - verts[i, 1])/res[i]
+          newvert[2] = verts[i, 2] + (j-1)*(verts[ip1, 2] - verts[i, 2])/res[i]
+          p = [p; newvert']
+        end
+      end
+    else
+      @assert length(res) == (nv-1)
+      for i = 1:(nv-1)
+        for j = 1:res[i]
+          newvert[1] = verts[i, 1] + (j-1)*(verts[i+1, 1] - verts[i, 1])/res[i]
+          newvert[2] = verts[i, 2] + (j-1)*(verts[i+1, 2] - verts[i, 2])/res[i]
+          p = [p; newvert']
+        end
+      end
+      p = [p; verts[end, :]']
+    end
+  end
+  return p
 end
+
 
 """
 Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
@@ -166,33 +169,27 @@ Then each triangle is subdevided into smaller triangles by taking `n` points alo
 - `n::Integer`: Number of subdivision along each edge of sub-triangles.
 """
 function grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
-    ## POLYGON_GRID _POINTS computes points on a polygonal grid.
-    #  Parameters:
-    #    Input, real v[nv,v2], the coordinates of the vertices.
-    #    Input, integer n, the number of subintervals.
-    nv = size(v, 1)
-    # Determine the centroid, and use it as the first grid point.
-    vc = zeros(1, 2)
-    vc[1, 1] = sum(v[1:nv, 1])/nv
-    vc[1, 2] = sum(v[1:nv, 2])/nv
-    # Initiate grid container
-    xyg = reshape([], 0, 2)
-
-    xyg = [xyg; vc]
-
-    # Consider each triangle formed by two consecutive vertices and the centroid,
-    # but skip the first line of points.
-    for l = 1:nv
-        lp1 = mod(l, nv) + 1
-        for i = 1:n
-            for j = 0:(n - i)
-                k = n - i - j
-                newv = (i*v[l, :] + j*v[lp1, :] + k*vc[1, :])/n
-                xyg = [xyg; newv']
-            end
-        end
+  nv = size(v, 1)
+  # Determine the centroid, and use it as the first grid point.
+  vc = zeros(1, 2)
+  vc[1, 1] = sum(v[1:nv, 1])/nv
+  vc[1, 2] = sum(v[1:nv, 2])/nv
+  # Initiate grid container
+  xyg = reshape([], 0, 2)
+  xyg = [xyg; vc]
+  # Consider each triangle formed by two consecutive vertices and the centroid,
+  # but skip the first line of points.
+  for l = 1:nv
+    lp1 = mod(l, nv) + 1
+    for i = 1:n
+      for j = 0:(n - i)
+        k = n - i - j
+        newv = (i*v[l, :] + j*v[lp1, :] + k*vc[1, :])/n
+        xyg = [xyg; newv']
+      end
     end
-    return xyg
+  end
+  return xyg
 end
 
 """
