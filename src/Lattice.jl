@@ -50,7 +50,7 @@ end
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
 # Arguments
-  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``a_{1}``= R[1, :], ``a_{2}`` = R[2, :]
+  - `R::Array{<:Real}`: Unit cell vectors of the 2D lattice, ``\vec{a}_{1}``= R[1, :], ``\vec{a}_{2}`` = R[2, :]
 """
 function ConstructWZC(R::Array{<:Real})
 
@@ -101,7 +101,7 @@ end
 # Arguments
   - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and ``v_{iy}`` = verts[i, 2].
   - `res::Union{Integer, Vector{<:Integer}}`: Number of sampling points between vertices. If it is specified as an integer ``N``,
-    it will take a `N` sampling point between any pair of vertives. One can specify also list of integers with number
+    it will take a ``N`` sampling point between any pair of vertives. One can specify also list of integers with number
     of points between each consequitive vertices.
   - `close::Bool=true`: Boolian that defines if the path is closed or not.
 """
