@@ -53,10 +53,6 @@ The primitive rectangular lattice can be constructed using:
 ```
 
 ```@docs
-  ConstructWZC(R::Array{<:Real})
-```
-
-```@docs
   MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
 ```@docs
