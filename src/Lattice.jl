@@ -49,6 +49,7 @@ end
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
+  ConstructWZC(R::Array{<:Real})
   This function implements the construction of the BZ of a 2D lattice following the procedure provided in reference
     Thompson, I., and Linton, C. M. (2010). "Guided surface waves on one-and two-dimensional arrays of spheres".,
     SIAM Journal on Applied Mathematics, 70(8), 2975-2995.
@@ -100,6 +101,7 @@ function ConstructWZC(R::Array{<:Real})
 end
 
 """
+  MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
   Generates linear interpolation paths between the vertices provided in the list vertex.
   # Arguments
     - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
@@ -159,6 +161,7 @@ function MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer
 end
 
 """
+  PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
   Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
   Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
   # Arguments
@@ -190,6 +193,7 @@ function PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
 end
 
 """
+  PlotBZ(L::Lattice2D)
   # Arguments
   - `L::Lattice2D`: 2D lattice object
   This function plots the 1st Brillouin zone of the 2D lattice
