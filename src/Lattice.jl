@@ -101,7 +101,7 @@ function ConstructWZC(R::Array{<:Real})
 end
 
 """
-  make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
+  MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 Generates linear interpolation paths between the vertices provided in the list vertex.
 # Arguments
   - `verts::Array{<:Real, 2}`:  Is a 2D arrar of points ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
@@ -110,7 +110,7 @@ Generates linear interpolation paths between the vertices provided in the list v
   of points between each consequitive vertices.
   - `close::Bool=true`: Boolian that defines if the path is closed or not.
 """
-function make_k_path(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
+function MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
   nv = size(verts, 1)
   p = reshape([], 0, 2)
   newvert = zeros(2)
@@ -168,7 +168,7 @@ Then each triangle is subdevided into smaller triangles by taking `n` points alo
 - `v::Array{<:Real, 2}`: Vertices of the polygon, specified as ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
 - `n::Integer`: Number of subdivision along each edge of sub-triangles.
 """
-function grid_in_polygon(v::Array{<:Real, 2}, n::Integer)
+function GridInPolygon(v::Array{<:Real, 2}, n::Integer)
   nv = size(v, 1)
   # Determine the centroid, and use it as the first grid point.
   vc = zeros(1, 2)
