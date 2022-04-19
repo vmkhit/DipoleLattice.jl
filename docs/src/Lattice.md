@@ -45,17 +45,21 @@ The primitive rectangular lattice can be constructed using:
   julia> L = Lattice("O", a, b, ψ)
 ```
 * Finally the **general lattice** with unit vectors ``\vec{a}_{1} = [a_{1x}, a_{1y}]`` and ``\vec{a}_{1} = [a_{2x}, a_{2y}]``.
+
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
 ```
+
 ```@docs
   ConstructWZC(R::Array{<:Real})
 ```
+
 ```@docs
   MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
+
 ```@docs
-  GridInPolygon(v::Array{<:Real, 2}, n::Integer)
+  PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
 ```
 ```@docs
   PlotBZ(L::Lattice2D)

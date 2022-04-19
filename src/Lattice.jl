@@ -158,7 +158,6 @@ function MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer
   return p
 end
 
-
 """
   Generate points in a polygon. The algorithm devide the polygon into triangles by connecting the centroid of the polygon to each vertex.
   Then each triangle is subdevided into smaller triangles by taking `n` points along each edge.
@@ -166,7 +165,7 @@ end
     - `v::Array{<:Real, 2}`: Vertices of the polygon, specified as ``v_{ix}`` = verts[i, 1] and `v_{iy}`` = verts[i, 2].
     - `n::Integer`: Number of subdivision along each edge of sub-triangles.
 """
-function GridInPolygon(v::Array{<:Real, 2}, n::Integer)
+function PointsInPolygon(v::Array{<:Real, 2}, n::Integer)
   nv = size(v, 1)
   # Determine the centroid, and use it as the first grid point.
   vc = zeros(1, 2)

@@ -12,7 +12,7 @@ module DipoleLattice
     import Dierckx
     using PyPlot
     pygui(true)
-    
+
     include("Lattice.jl")
     #include("Wijers.jl")
     include("DyadSum.jl")
@@ -21,7 +21,7 @@ module DipoleLattice
     include("MulticomponentLattice.jl")
     include("Lattice_reflection.jl")
     include("../utils/utils.jl")
-    export Lattice2D, ConstructWZC, PlotBZ
+    export Lattice2D, ConstructWZC, MakeKpath, PointsInPolygon, PlotBZ
     export DyadSum, ScalarGreenFn, DyadGreenFn, RDyadSum
     export Material, Interface, Layer, Stack, revert_stack, intface_rt, tmm_matrix, RT_calc, ellipso_tmm
     export CircleIntersect, SphereIntersect, CheckClusterIntersect, PlotSpheres, alpha_disc, eps_Drude
