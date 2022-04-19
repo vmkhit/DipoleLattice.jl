@@ -17,13 +17,10 @@
 | **Oblique**               | "O"  |
 | **General**               | ""   |
 
-If `id` = "S" or "H" one has to specify the lattice vector length as an optional argument. Similarly, for the case when `id`="RC" or `id`="RP" one has to specify the lengths of the lattice vectors along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
-one has to specify also the angle between these vectors as the 3rd optional argument. If `id` is specified as an empty string `id`="" one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
+If `id = "S"` or `id = "H"` one has to specify the lattice vector length as an optional argument. Similarly, for the case when `id = "RC"` or `id = "RP"` one has to specify the lengths of the lattice vectors along each orthogonal direction. For Oblique lattice, besides the lattice vector lengths
+one has to specify also the angle between these vectors as the 3rd optional argument. If `id` is specified as an empty string `id = ""` one has to specify the direct lattice vectors ``\vec{a}_{1}`` and ``\vec{a}_{2}``
 as an optional arguments.
 
-```math
-f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta
-```
 
 # Examples
 * To define a **square lattice** with unit vector length = `a = 5` we can call.
@@ -51,7 +48,9 @@ The primitive rectangular lattice can be constructed using:
 ```@julia-repl
   julia> L = Lattice("", a1, a2)
 ```
-
+```@docs
+  ConstructWZC(R::Array{<:Real})
+```
 ```@docs
   MakeKpath(verts::Array{<:Real, 2}, res::Union{Integer, Vector{<:Integer}}; close::Bool=true)
 ```
