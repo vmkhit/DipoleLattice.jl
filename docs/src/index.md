@@ -49,7 +49,7 @@ where for the sake of symmetry the following normalized quantities are introduce
   \mathcal{G}_{H}^{\neq}(\mathbf{r}-\mathbf{r}') = \dfrac{1}{k^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = I  \times \nabla\frac{\mathrm{e}^{\mathrm{i} k\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
 ```
 with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``. For short notations we will introduce column vectors
-``\boldsymbol{\mu} = [\mathbf{p}, \mathbg{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
+``\boldsymbol{\mu} = [\mathbf{p}, \mathbf{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
 
 ```math
   \boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
