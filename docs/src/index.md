@@ -29,10 +29,12 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
   \begin{bmatrix}
   \mathbf{E} \\
   \mathbf{H}^{\prime}
-  \end{bmatrix} = \begin{bmatrix}
-  \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0) & \ii k_1 \mathcal{G}_{H}(\mathbf{r}-\mathbf{r}_0)\\
-  -\ii k_1 \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0) & \mathcal{G}_{E}(\mathbf{r}-\mathbf{r}_0)
-  \end{bmatrix}\begin{bmatrix}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0) & \mathrm{i} k_1 \mathcal{G}_{H}(\mathbf{r}-\mathbf{r}_0)\\
+    -\mathrm{i} k_1 \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0) & \mathcal{G}_{E}(\mathbf{r}-\mathbf{r}_0)
+  \end{bmatrix}
+  \begin{bmatrix}
   \mathbf{p}^{\prime} \\
   \mathbf{m}^{\prime}
   \end{bmatrix}
@@ -40,6 +42,7 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
 where for the sake of symmetry the following normalized quantities are introduced ``\mathbf{p}^{\prime} = \mathbf{p}/\varepsilon``, ``\mathbf{m}^{\prime} = Z\mathbf{m}`` and ``\mathbf{H}^{\prime} = Z\mathbf{H}``, with ``\varepsilon`` and ``\mu`` being the dielectric function and permeability of the host medium and ``Z = \sqrt{\mu/\varepsilon}``. The dyadic Green functons are given as
 
 ```math
-  \mathcal{G}_{E}^{\neq}(\rv-\rv') = \left[\mathds{I} k_1^2 +\nabla\otimes\nabla\right]\dfrac{{\rm e}^{{\rm i} k_1\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}\\
-  \mathcal{G}_{H}^{\neq}(\rv-\rv') = \dfrac{1}{k_{1}^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = \mathds{I}  \times \nabla\dfrac{\ee^{{\rm i} k_1\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
+  \mathcal{G}_{E}^{\neq}(\mathbf{r}-\mathbf{r}') = \left[\mathds{I} k^2 +\nabla\otimes\nabla\right]\dfrac{{\rm e}^{\mathrm{i} k\vert  \vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}\\
+  \mathcal{G}_{H}^{\neq}(\mathbf{r}-\mathbf{r}') = \dfrac{1}{k^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = \mathds{I}  \times \nabla\dfrac{\ee^{\mathrm{i} k\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
 ```
+with ``k=\sqrt{\varepsilon\mu}k_0``, ``k_0 = \omega/c``.
