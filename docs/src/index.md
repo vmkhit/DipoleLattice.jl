@@ -31,10 +31,13 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
   \mathbf{H}^{\prime}
   \end{bmatrix} =
   \begin{bmatrix}
-    \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0) & \mathrm{i} k \mathcal{G}_{H}(\mathbf{r}-\mathbf{r}_0)\\
-    -\mathrm{i} k \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0) & \mathcal{G}_{E}(\mathbf{r}-\mathbf{r}_0)
+    \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0) & \mathrm{i} k \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0)\\
+    -\mathrm{i} k \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0) & \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0)
   \end{bmatrix}
   \begin{bmatrix}
+  \mathbf{p}^{\prime} \\
+  \mathbf{m}^{\prime}
+  \end{bmatrix} = \mathcal{G}_{6x6}(\mathbf{r}-\mathbf{r}_0)\begin{bmatrix}
   \mathbf{p}^{\prime} \\
   \mathbf{m}^{\prime}
   \end{bmatrix}
@@ -45,4 +48,9 @@ where for the sake of symmetry the following normalized quantities are introduce
   \mathcal{G}_{E}^{\neq}(\mathbf{r}-\mathbf{r}') = \left[I k^2 +\nabla\otimes\nabla\right]\frac{\mathrm{e}^{\mathrm{i} k \vert \mathbf{r}-\mathbf{r}' \vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}\\
   \mathcal{G}_{H}^{\neq}(\mathbf{r}-\mathbf{r}') = \dfrac{1}{k^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = I  \times \nabla\frac{\mathrm{e}^{\mathrm{i} k\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
 ```
-with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``.
+with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``. For short notations we will introduce column vectors
+``\boldsymbol{\mu} = [\mathbf{p}, \mathbg{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
+
+```math
+  \boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
+```
