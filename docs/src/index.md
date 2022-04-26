@@ -37,7 +37,7 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
   \begin{bmatrix}
   \mathbf{p}^{\prime} \\
   \mathbf{m}^{\prime}
-  \end{bmatrix} = \mathcal{G}_{\rm 6x6}(\mathbf{r}-\mathbf{r}_0)\begin{bmatrix}
+  \end{bmatrix} = \mathcal{G}_{\rm 6\times6}(\mathbf{r}-\mathbf{r}_0)\begin{bmatrix}
   \mathbf{p}^{\prime} \\
   \mathbf{m}^{\prime}
   \end{bmatrix}
@@ -52,5 +52,5 @@ with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``. For short notations we 
 ``\boldsymbol{\mu} = [\mathbf{p}, \mathbf{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
 
 ```math
-  \boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{\rm 6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{\rm 6x6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
+  \boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{\rm 6\times6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{\rm 6\times 6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
 ```
