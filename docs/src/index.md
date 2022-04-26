@@ -31,8 +31,8 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
   \mathbf{H}^{\prime}
   \end{bmatrix} =
   \begin{bmatrix}
-    \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}_0) & \mathrm{i} k_1 \mathcal{G}_{H}(\mathbf{r}-\mathbf{r}_0)\\
-    -\mathrm{i} k_1 \mathcal{G}^{\neq}_{H}(\mathbf{r}-\mathbf{r}_0) & \mathcal{G}_{E}(\mathbf{r}-\mathbf{r}_0)
+         \mathcal{G}}_{E} & i k \mathcal{G}_{H}\\
+    -i k \mathcal{G}_{H}  &     \mathcal{G}_{E}
   \end{bmatrix}
   \begin{bmatrix}
   \mathbf{p}^{\prime} \\
@@ -42,7 +42,7 @@ The electric and magnetic fields at position ``\mathbf{r}`` produced by such an 
 where for the sake of symmetry the following normalized quantities are introduced ``\mathbf{p}^{\prime} = \mathbf{p}/\varepsilon``, ``\mathbf{m}^{\prime} = Z\mathbf{m}`` and ``\mathbf{H}^{\prime} = Z\mathbf{H}``, with ``\varepsilon`` and ``\mu`` being the dielectric function and permeability of the host medium and ``Z = \sqrt{\mu/\varepsilon}``. The dyadic Green functons are given as
 
 ```math
-  \mathcal{G}_{E}^{\neq}(\mathbf{r}-\mathbf{r}') = \left[\mathds{I} k^2 +\nabla\otimes\nabla\right]\dfrac{{\rm e}^{\mathrm{i} k\vert  \vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}\\
-  \mathcal{G}_{H}^{\neq}(\mathbf{r}-\mathbf{r}') = \dfrac{1}{k^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = \mathds{I}  \times \nabla\dfrac{\ee^{\mathrm{i} k\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
+  \mathcal{G}_{E} = \left[\mathds{I} k^2 +\nabla\otimes\nabla\right]\dfrac{e^{i k\vert r-r'\vert}}{\vert r -r' \vert}\\
+  \mathcal{G}_{H} = \dfrac{1}{k^2} \nabla\times \mathcal{G}_{E} = \mathds{I}  \times \nabla\dfrac{e^{i k\vert r-r'\vert}}{\vert r-r' \vert}
 ```
 with ``k=\sqrt{\varepsilon\mu}k_0``, ``k_0 = \omega/c``.
