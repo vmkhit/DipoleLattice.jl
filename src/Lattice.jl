@@ -46,6 +46,11 @@ struct Lattice2D
   end
 end
 
+struct UnitCell
+  L::Lattice2D
+  αβ::Array{<:Real, 2} # this can be given in terms of natural coordinates
+end
+
 # High-Throughput Computational Screening of Two-Dimensional Semiconductors
 # Symmetry-restricted phase transitions in two-dimensional solids
 """
@@ -211,7 +216,6 @@ function PlotBZ(L::Lattice2D)
 
   ax[:text](pos1[1], pos1[2] , "g\$_1\$", fontsize = 16)
   ax[:text](pos2[1], pos2[2], "g\$_2\$", fontsize = 16)
-
   ax[:tick_params](color="none", labelcolor="none")
   #ax.spines["top"][:set_edgecolor]("none")
   #ax.spines["bottom"][:set_edgecolor]("none")
@@ -219,3 +223,64 @@ function PlotBZ(L::Lattice2D)
   #ax.spines["right"][:set_edgecolor]("none")
   PyPlot.tight_layout()
 end
+
+"""
+  ZigZagOrder(m::Integer, n::Integer, Nx::Integer, Ny::Integer)
+  This function returns the order of 2D lattice site in a  zig-zag order.
+  # Arguments
+  - `m::Integer`: The site index along ``a_{1}`` unit vector
+  - `n::Integer`: The site index along ``a_{2}`` unit vector
+  - `Nx::Integer`: Number of site along ``a_{1}`` unit vector
+  - `Ny::Integer`: Number of site along ``a_{2}`` unit vector
+"""
+function ZigZagOrder(m::Integer, n::Integer, Nx::Integer, Ny::Integer)
+  if iseven(m)
+      return m*(Ny + 1) + (n + 1)
+  else
+      return (m + 1)*(Ny + 1) - n
+  end
+end
+
+"""
+  ShowLattice(L::Lattice2D, N1::Integer, N2::Integer)
+  This function draws the given lattice
+  # Arguments
+  - `L::Lattice2D`: 2D lattice object
+  - `N1::Integer`: Number of site along ``a_{1}`` unit vector
+  - `N2::Integer`: Number of site along ``a_{2}`` unit vector
+"""
+function ShowLattice(L::Lattice2D, N1::Integer, N2::Integer)
+  fig, ax = PyPlot.subplots(1, 1)
+  ax.axis("equal")
+  v = zeros(Float64, (N1+1)*(N2+1), 2)
+  bonds = zeros(Int16, (N1+1)*(N2+1), 2)
+  for m = 0:N1
+    for n = 0:N2
+      p = ZigZagOrder(m, n, N1, N2)
+      v[p, 1] = m*L.R[1, 1] + n*L.R[2, 1]
+      v[p, 2] = m*L.R[1, 2] + n*L.R[2, 2]
+      if m < N1 && n<N2
+        bonds[p, 1] =  ZigZagOrder(m+1, n,   N1, N2)
+        bonds[p, 2] =  ZigZagOrder(m,   n+1, N1, N2)
+      elseif m==N1 && n<N2
+        bonds[p, 1] =  0
+        bonds[p, 2] =  ZigZagOrder(m,   n+1, N1, N2)
+      elseif m < N1 && n==N2
+        bonds[p, 1] =  ZigZagOrder(m+1, n,   N1, N2)
+        bonds[p, 2] =  0
+      end
+    end
+  end
+  for p = 1:(N1+1)*(N2+1)
+    vp = v[p, :]
+    vo = v[bonds[p, bonds[p, :] .!= 0], :]
+    for i = 1:size(vo, 1)
+      ax[:plot]([vp[1], vo[i, 1]], [vp[2], vo[i, 2]], color = "k")
+    end
+  end
+  ax[:scatter](v[:, 1], v[:, 2], color = "green")
+end
+
+
+L = Lattice2D("RP", 1, 2)
+PlotLattice!(L, 5, 5)
