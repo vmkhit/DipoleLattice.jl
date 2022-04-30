@@ -280,7 +280,3 @@ function ShowLattice(L::Lattice2D, N1::Integer, N2::Integer)
   end
   ax[:scatter](v[:, 1], v[:, 2], color = "green")
 end
-
-
-L = Lattice2D("RP", 1, 2)
-PlotLattice!(L, 5, 5)
