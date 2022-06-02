@@ -58,5 +58,16 @@ with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``. For short notations we 
 Using the translational symmetry of the structure this system can be reduced to ``3N \times 3N`` system of equations for the induced dipole moments in the unit cell, where `N` is the number of dipoles in the unit cell.
 
 ```math
-  \alpha(\omega)^{-1}\boldsymbol{\mu}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{\alpha}) + \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega) \boldsymbol{\mu}^{\alpha} + \sum_{\beta\neq\alpha}\mathbf{G}(\mathbf{k}_{\parallel}, \omega, \Delta_{\alpha,\beta}) \boldsymbol{\mu}^{\beta} 
+  \alpha^{-1}(\omega)\boldsymbol{\mu}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{\alpha}) + \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega) \boldsymbol{\mu}^{\alpha} + \sum_{\beta\neq\alpha}\mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha,\beta}) \boldsymbol{\mu}^{\beta}
+```
+
+where ``\mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega)`` and ``\mathbf{G}(\mathbf{k}_{\parallel}, \omega, \Delta_{\alpha,\beta})`` are the so-called lattice sums defined as
+
+```math
+  \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega) = \sum_{j \neq i} \mathcal{G}_{\rm 6\times6}(\mathbf{R}_{i}-\mathbf{R}_{j}){\rm e}^{-\mathbf{k}_{\parallel}\cdot (\mathbf{R}_{i}-\mathbf{R}_{j})}
+```
+and
+
+```math
+  \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta}) = \sum_{j} \mathcal{G}_{\rm 6\times6}(\mathbf{R}_{i}-\mathbf{R}_{j}){\rm e}^{-\mathbf{k}_{\parallel}\cdot (\mathbf{R}_{i}-\mathbf{R}_{j})}
 ```
