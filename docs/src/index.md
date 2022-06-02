@@ -49,8 +49,14 @@ where for the sake of symmetry the following normalized quantities are introduce
   \mathcal{G}_{H}^{\neq}(\mathbf{r}-\mathbf{r}') = \dfrac{1}{k^2} \nabla\times \mathcal{G}^{\neq}_{E}(\mathbf{r}-\mathbf{r}') = I  \times \nabla\frac{\mathrm{e}^{\mathrm{i} k\vert\mathbf{r}-\mathbf{r}'\vert}}{\vert\mathbf{r}-\mathbf{r}'\vert}
 ```
 with ``k=k_0\sqrt{\varepsilon\mu}``, ``k_0 = \omega/c``. For short notations we will introduce column vectors
-``\boldsymbol{\mu} = [\mathbf{p}, \mathbf{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
+``\boldsymbol{\mu} = [\mathbf{p}, \mathbf{m}^{\prime}]^{T}`` and ``\mathbf{F} = [\mathbf{E}, \mathbf{H}^{\prime}]^{T}``, where superscript `T` stands for the transpose. With this notations, we can write a self-consistent system of equations for the dipoles in the array
 
 ```math
-  \boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{\rm 6\times6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{\rm 6\times 6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
+  \alpha(\omega)^{-1}\boldsymbol{\mu}_{i}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{i,\alpha}) + \sum_{j \neq i} \mathcal{G}_{\rm 6\times6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \alpha})\boldsymbol{\mu}_{j}^{\alpha} + \sum_{j}\sum_{\beta \neq \alpha} \mathcal{G}_{\rm 6\times 6}(\mathbf{r}_{i,\alpha}-\mathbf{r}_{j, \beta})\boldsymbol{\mu}_{j}^{\beta}
+```
+
+Using the translational symmetry of the structure this system can be reduced to ``3N \times 3N`` system of equations for the induced dipole moments in the unit cell, where `N` is the number of dipoles in the unit cell.
+
+```math
+  \alpha(\omega)^{-1}\boldsymbol{\mu}^{\alpha} = \mathbf{F}^{\rm ext}(\mathbf{r}_{\alpha}) + \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega) \boldsymbol{\mu}^{\alpha} + \sum_{\beta\neq\alpha}\mathbf{G}(\mathbf{k}_{\parallel}, \omega, \Delta_{\alpha,\beta}) \boldsymbol{\mu}^{\beta} 
 ```
