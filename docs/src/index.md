@@ -82,7 +82,8 @@ This can be cast as a system of equations
 where the elements of the matrix ``\mathbf{Q}`` and vectors ``\boldsymbol{\mu}`` and ``\mathbf{F}`` are defined as.
 
 ```math
-  \mathbf{Q}_{\alpha, \beta} = \left[\alpha^{-1}(\omega) - \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega)\right]\delta_{\alpha, \beta} + \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta})\\
+  \mathbf{Q}_{\alpha, \beta} = \left[\alpha^{-1}(\omega) - \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega)\right]\delta_{\alpha, \beta} - \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta})\\
   \boldsymbol{\mu} = [\boldsymbol{\mu}_{1}, \boldsymbol{\mu}_{2} ,..., \boldsymbol{\mu}_{N}]^T\\
   \mathbf{F} = [\mathbf{F}^{\rm ext}_{1}, \mathbf{F}^{\rm ext}_{2} ,...,\mathbf{F}^{\rm ext}_{N}]^T\\
 ```
+Once the induced dipoles are known in the system all the other properties can be calculated from them.
