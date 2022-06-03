@@ -72,4 +72,17 @@ and
   \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta}) = \sum_{j} \mathcal{G}_{\rm 6\times6}(\mathbf{R}_{i}-\mathbf{R}_{j} - \boldsymbol{\Delta}_{\alpha, \beta}){\rm e}^{-\mathbf{k}_{\parallel}\cdot (\mathbf{R}_{i}-\mathbf{R}_{j})}
 ```
 
-here we defined ``\boldsymbol{\Delta}_{\alpha, \beta}) = \mathbf{r}_{\alpha} - \mathbf{r}_{\beta}``. 
+here we defined ``\boldsymbol{\Delta}_{\alpha, \beta} = \mathbf{r}_{\alpha} - \mathbf{r}_{\beta}``.  
+This can be cast as a system of equations
+
+```math
+  \mathbf{Q}\boldsymbol{\mu} = \mathbf{F}
+```
+
+where the elements of the matrix ``\mathbf{Q}`` and vectors ``\boldsymbol{\mu}`` and ``\mathbf{F}`` are defined as.
+
+```math
+  \mathbf{Q}_{\alpha, \beta} = \left[\alpha^{-1}(\omega) - \mathbf{G}^{\neq}(\mathbf{k}_{\parallel}, \omega)\right]\delta_{\alpha, \beta} + \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta})\\
+  \boldsymbol{\mu} = [\boldsymbol{\mu}_{1}, \boldsymbol{\mu}_{2} ,..., \boldsymbol{\mu}_{N}]^T\\
+  \mathbf{F} = [\mathbf{F}^{\rm ext}_{1}, \mathbf{F}^{\rm ext}_{2} ,...,\mathbf{F}^{\rm ext}_{N}]^T\\
+```
