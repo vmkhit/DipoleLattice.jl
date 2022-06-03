@@ -71,3 +71,5 @@ and
 ```math
   \mathbf{G}(\mathbf{k}_{\parallel}, \omega, \boldsymbol{\Delta}_{\alpha, \beta}) = \sum_{j} \mathcal{G}_{\rm 6\times6}(\mathbf{R}_{i}-\mathbf{R}_{j} - \boldsymbol{\Delta}_{\alpha, \beta}){\rm e}^{-\mathbf{k}_{\parallel}\cdot (\mathbf{R}_{i}-\mathbf{R}_{j})}
 ```
+
+here we defined ``\boldsymbol{\Delta}_{\alpha, \beta}) = \mathbf{r}_{\alpha} - \mathbf{r}_{\beta}``. 
